@@ -41,6 +41,8 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: var(--primary-color);
   color: var(--text-color);
+  width: 95%;
+  margin: 0 auto;
 }
 
 html {
