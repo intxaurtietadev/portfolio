@@ -16,17 +16,19 @@ function resizeCanvas() {
 
 resizeCanvas();
 
-// Clase para crear partículas
+// Clase para crear partículas con titilación
 class Particle {
   constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 1 + 1;
-    this.speedX = Math.random() * 2.5 - 1;
-    this.speedY = Math.random() * 2 - 1;
+    this.x = Math.random() * canvas.width; // Posición inicial X
+    this.y = Math.random() * canvas.height; // Posición inicial Y
+    this.size = Math.random() * 1 + 1; // Tamaño de la partícula
+    this.speedX = Math.random() * 2.5 - 1; // Velocidad horizontal
+    this.speedY = Math.random() * 2 - 1; // Velocidad vertical
+    this.baseOpacity = Math.random() * 0.5 + 0.3; // Opacidad base (entre 0.3 y 0.8)
+    this.opacity = this.baseOpacity; // Opacidad inicial
   }
 
-  // Actualiza la posición de la partícula
+  // Actualiza la posición y la opacidad de la partícula
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
@@ -34,13 +36,26 @@ class Particle {
     // Rebote en los bordes del canvas
     if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
     if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+
+    // Efecto de titilación: variación aleatoria en la opacidad
+    this.opacity = this.baseOpacity + (Math.random() * 0.2 - 0.1); // ±10% de variación
+    this.opacity = Math.max(0.1, Math.min(this.opacity, 0.8)); // Limita entre 0.1 y 0.8
   }
 
-  // Dibuja la partícula en el canvas
+  // Dibuja la partícula en el canvas con su opacidad actual
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
+
+    // Ajusta el color de relleno según el tema actual
+    const theme = document.documentElement.getAttribute("data-theme");
+    if (theme === "dark") {
+      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; // Partículas blancas con opacidad
+    } else {
+      ctx.fillStyle = `rgba(0, 0, 0, ${this.opacity})`; // Partículas negras con opacidad
+    }
+
+    ctx.fill(); // Rellena la partícula
   }
 }
 
@@ -50,7 +65,7 @@ const particles = [];
 // Inicializa las partículas
 function init() {
   particles.length = 0; // Limpia las partículas existentes
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 300; i++) { // Número de partículas
     particles.push(new Particle());
   }
 }
@@ -70,10 +85,8 @@ function updateCanvasTheme() {
   const theme = document.documentElement.getAttribute("data-theme");
   if (theme === "dark") {
     canvas.style.background = "#1a1a1a"; // Fondo oscuro
-    ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; // Partículas blancas
   } else {
     canvas.style.background = "#f9f9f9"; // Fondo claro
-    ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Partículas negras
   }
 }
 
