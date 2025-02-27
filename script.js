@@ -115,6 +115,14 @@ function toggleMenu() {
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
+// Cerrar menú al hacer clic en un enlace
+const menuLinks = document.querySelectorAll(".menu-links a");
+menuLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelector(".menu-links").classList.remove("open");
+    document.querySelector(".hamburger-icon").classList.remove("open");
+  });
+});
 
 // Botón para alternar entre light y dark mode
 const toggleButton = document.getElementById("theme-toggle");
@@ -136,3 +144,61 @@ if (localStorage.getItem("theme") === "dark") {
   document.documentElement.setAttribute("data-theme", "dark");
   toggleButton.textContent = "☀️";
 }
+
+// PERMITIR NAVEGACIÓN CON TECLADO -->
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    document.querySelector(".menu-links").classList.remove("open");
+    document.querySelector(".hamburger-icon").classList.remove("open");
+  }
+});
+
+// Importar la librería SortableJS
+document.addEventListener("DOMContentLoaded", function () {
+  const script = document.createElement('script');
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js";
+  document.head.appendChild(script);
+
+  script.onload = function () {
+    const projectGrid = document.querySelectorAll(".about-containers");
+    projectGrid.forEach(container => {
+      new Sortable(container, {
+        animation: 500,
+        easing: "cubic-bezier(0.25, 1, 0.5, 1)", // Transición más fluida
+        ghostClass: "sortable-ghost",
+        chosenClass: "sortable-chosen",
+        dragClass: "sortable-drag",
+        swapThreshold: 0.2,
+        onStart: function (evt) {
+          evt.item.classList.add("dragging");
+        },
+        onEnd: function (evt) {
+          evt.item.classList.remove("dragging");
+          console.log("Elemento movido: ", evt.item);
+        }
+      });
+    });
+  };
+});
+
+// Estilos mejorados para la animación visual
+document.head.insertAdjacentHTML("beforeend", `
+  <style>
+    .sortable-ghost {
+      opacity: 0.4;
+      transform: scale(0.2);
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    .sortable-chosen {
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .sortable-drag {
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+      transform: scale(1.05);
+    }
+    .dragging {
+      transition: none !important;
+      transform: scale(1.1);
+    }
+  </style>
+`);
