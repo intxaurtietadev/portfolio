@@ -158,8 +158,7 @@
 }
 
 .icon {
-  font-size: 2em;
-  color: var(--accent-color);
+  color: var(--text-color);
 }
 
 /* En pantallas medianas, ajustamos a 3 columnas */

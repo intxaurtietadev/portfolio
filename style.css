@@ -6,7 +6,7 @@
   --primary-color: #ffffff;
   --secondary-color: #f7f7f7;
   --text-color: #131313;
-  --accent-color: #1d4e0e;
+  --accent-color: #252624;
   --border-color: rgb(163, 163, 163);
   --background-color: rgb(250, 250, 250);
   --button-color: rgb(53, 53, 53);
@@ -73,12 +73,14 @@ html {
 p {
   color: var(--text-color);
   font-size: var(--font-size-base);
+  font-weight: 100;
 }
 
 /* TRANSITION */
 a,
 .btn {
   transition: all var(--transition-speed) var(--transition-ease);
+  
 }
 
 /* DESKTOP NAV */
@@ -253,7 +255,7 @@ section {
 }
 
 .section__text p {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .section__text__p1 {
@@ -282,6 +284,7 @@ section {
 .icon {
   cursor: pointer;
   height: 2rem;
+  color: var(--text-color)
 }
 
 /* BUTTONS */
@@ -391,10 +394,13 @@ section {
   border: var(--border-color) 0.1rem solid;
   border-radius: var(--border-radius-lg);
   text-align: center;
+  line-height: 1.5; /* Espaciado entre líneas para mejor lectura */
   box-shadow: 
     inset 0px 4px 6px var(--light-shadow-color),  /* Sombra interior */
     0px 4px 6px var(--shadow-color),              /* Sombra exterior */
     2px 1px 5px var(--light-shadow-color);        /* Extra sombra exterior */
+
+
 }
 
 .section-container {
