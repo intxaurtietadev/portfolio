@@ -434,25 +434,24 @@ section {
 
 .article-container {
   display: flex;
-  text-align: initial;
-  flex-wrap: wrap;
+  text-align:justify;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: var(--spacing-md);
   justify-content: space-around;
 }
 
 article {
   display: flex;
-  width: 10rem;
-  justify-content: space-around;
+  justify-content: flex-start;
   gap: var(--spacing-xs);
-  width: 45%;
+  flex: 1;
+  min-width: 250px; /* Asegura que los artículos no sean demasiado pequeños */
 }
 
 article .icon {
   cursor: default;
 }
-
 /* PROJECTS SECTION */
 #projects {
   position: relative;
