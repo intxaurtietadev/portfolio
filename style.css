@@ -553,3 +553,107 @@ footer {
 footer p {
   text-align: center;
 }
+
+
+.project-swiper {
+  width: 100%; /* Ocupa el ancho disponible */
+  /* Añade padding inferior si la paginación queda fuera */
+  padding: 10px 0 40px 0;
+  /* position: relative; */ /* Quitado para que flechas se posicionen respecto a #projects */
+}
+
+/* Cada slide individual */
+.swiper-slide {
+  height: auto; /* Altura definida por el contenido */
+  display: flex; /* Para centrar/estirar tarjeta */
+  align-items: stretch; /* Hace que las tarjetas ocupen la misma altura */
+  justify-content: center; /* Centra la tarjeta si es más estrecha que el slide */
+  padding: 5px; /* Pequeño espacio para que se vean las sombras de las tarjetas */
+  box-sizing: border-box; /* Incluye padding en el tamaño */
+}
+
+/* Estilos específicos para la tarjeta DENTRO del slide */
+.swiper-slide .details-container {
+  width: 100%; /* La tarjeta ocupa el ancho del slide */
+  height: 100%; /* La tarjeta ocupa la altura del slide */
+  margin: 0; /* Sin margen extra */
+  /* Añadido para asegurar alineación interna si hay descripción */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empuja botones abajo */
+}
+
+
+/* Estilos para las flechas de navegación */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 50%; /* Centrado vertical */
+    transform: translateY(-50%); /* Ajuste fino centrado vertical */
+    width: 40px;  /* Ancho del botón */
+    height: 40px; /* Alto del botón */
+    margin-top: 0; /* Sobrescribe posible margen de Swiper */
+    z-index: 10;  /* Encima de los slides */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--swiper-navigation-color); /* Color del icono flecha */
+    background-color: rgba(var(--primary-rgb), 0.5); /* Fondo semi-transparente */
+    border-radius: 50%; /* Botones redondos */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.swiper-button-prev {
+    left: 10px; /* Posición izquierda */
+}
+.swiper-button-next {
+    right: 10px; /* Posición derecha */
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: rgba(var(--primary-rgb), 0.8); /* Más opaco al pasar ratón */
+    color: var(--accent-color); /* Cambia color icono flecha */
+}
+
+/* Estilos para los iconos de las flechas (proporcionados por Swiper) */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-family: swiper-icons; /* Fuente de iconos por defecto */
+    font-size: calc(var(--swiper-navigation-size) * 0.6); /* Tamaño del icono flecha */
+    font-weight: 900; /* Más grueso si es necesario */
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+}
+
+/* Estilos para la paginación (puntos) */
+.swiper-pagination {
+    position: absolute;
+    bottom: 8px !important; /* Distancia desde abajo */
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.swiper-pagination-bullet {
+    width: 9px; /* Ancho del punto */
+    height: 9px; /* Alto del punto */
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--border-color); /* Color punto inactivo */
+    opacity: 0.6;
+    margin: 0 4px; /* Espacio entre puntos */
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+.swiper-pagination-bullet-active {
+    background: var(--swiper-pagination-color); /* Color punto activo */
+    opacity: 1;
+}
+
+/* Estilo para flechas desactivadas */
+.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: none;
+}
