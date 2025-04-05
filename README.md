@@ -59,22 +59,6 @@ setup to run locally.
 3.  Open index.html: Simply open the index.html file in your preferred
     web browser (Chrome, Firefox, Edge, etc.).
 
-## Project Structure
-/portfolio-thais-intxaurtieta (or your root folder name)
-  |- index.html          # Main HTML file
-  |- style.css           # Main and Swiper styles
-  |- mediaqueries.css    # Responsive styles
-  |- script.js           # Main JavaScript code (particles, menu, theme, Swiper)
-  |- /assets
-      |- profile-pic.png     # Profile section picture
-      |- about-pic.png       # About me section picture
-      |- project-1.png       # Project images...
-      |- project-2.png
-      |- project-3.png
-      |- project-4.png
-      |- project-5.png
-      |- project-6.png
-      |- cv-thais.pdf      # Curriculum Vitae
 
 ## Contact
 
